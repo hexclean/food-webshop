@@ -1,15 +1,16 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 // Components
 import CategoryItem from "./CategoryItem";
 
 const Categories = () => {
+  const categories = useSelector(state => state.categories.categoryList);
   const renderCategories = () => {
     return (
       <ul className="u-list">
-        <CategoryItem />
-        <CategoryItem />
-        <CategoryItem />
+        {categories.map(item => (
+          <CategoryItem key={item.id} id={item.id} name={item.name} />
+        ))}
       </ul>
     );
   };
