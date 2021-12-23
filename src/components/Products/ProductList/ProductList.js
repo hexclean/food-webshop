@@ -10,10 +10,15 @@ const Products = () => {
   const renderProducts = () => {
     return (
       <>
-        <ProductItem />
-        <ProductItem />
-        <ProductItem />
-        <ProductItem />
+        {products.map(item => (
+          <ProductItem
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            price={item.price}
+            imageUrl={item.imageUrl}
+          />
+        ))}
       </>
     );
   };
