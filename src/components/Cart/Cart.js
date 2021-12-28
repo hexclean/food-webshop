@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 // Components
 import Card from "../Orders/Shared/Card";
 import CartItem from "./CartItem";
@@ -8,8 +8,19 @@ import Checkout from "../Orders/Checkout/Checkout";
 import "./Css/Cart.css";
 
 const Cart = () => {
+  const cartItems = useSelector(state => state.cart.items);
   const renderCartItems = () => {
-    return <CartItem />;
+    return cartItems.map(item => (
+      <CartItem
+        key={item.id}
+        id={item.id}
+        name={item.name}
+        price={item.price}
+        imageUrl={item.imageUrl}
+        totalItemAmount={item.totalItemAmount}
+        itemQuantity={item.quantity}
+      />
+    ));
   };
 
   return (
