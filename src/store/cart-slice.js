@@ -6,6 +6,11 @@ const cartSlice = createSlice({
     items: [],
     totalQuantity: 0,
     totalAmount: 0,
+    coupon: {
+      activatedCoupon: false,
+      value: 1,
+      name: "mc",
+    },
   },
   reducers: {
     addItemToCart(state, action) {
@@ -36,6 +41,16 @@ const cartSlice = createSlice({
         state.items = state.items.filter(item => item.id != id);
       } else {
         existingItem.quantity--;
+      }
+    },
+    addCouponCode(state, action) {
+      const coupon = action.payload.couponName;
+      if (
+        coupon === state.coupon.name &&
+        state.coupon.activatedCoupon === false
+      ) {
+        state.coupon.activatedCoupon = true;
+        state.totalAmount -= state.coupon.value;
       }
     },
   },

@@ -1,8 +1,29 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../../store/cart-slice";
 import "./Css/Checkout.css";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+  const [couponName, setCouponName] = useState("");
+
+  const changeCouponCode = event => setCouponName(event.target.value);
+  const coupon = useSelector(state => state.cart.coupon);
+
+  const addCouponCode = () => {
+    if (coupon.activatedCoupon === false && coupon.name === couponName) {
+      // success message
+      dispatch(
+        cartActions.addCouponCode({
+          couponName,
+        })
+      );
+    } else {
+      // error message
+    }
+  };
+
+  const totalAmount = useSelector(state => state.cart.totalAmount);
   return (
     <div className="col-lg-4">
       <div className="total p-3 mt-5">
@@ -11,32 +32,38 @@ const Checkout = () => {
             type="text"
             className="form-control"
             placeholder="Enter a coupon code"
+            onChange={changeCouponCode}
+            value={couponName}
           />
           <div className="input-group-append">
-            <button className="btn btn-outline-warning">Apply</button>
+            <button onClick={addCouponCode} className="btn btn-outline-warning">
+              Apply
+            </button>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-lg-6 col-md-6">
-            <div className="name coupon-width">
-              <p className="coupon-name">
-                <u>
-                  <b>Coupon is activated</b>
-                </u>
-              </p>
+        {coupon.activatedCoupon && (
+          <div className="row">
+            <div className="col-lg-6 col-md-6">
+              <div className="name coupon-width">
+                <p className="coupon-name">
+                  <u>
+                    <b>Coupon is activated</b>
+                  </u>
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-6 col-md-6">
+              <div className="amount text-right">
+                <p className="coupon-name">
+                  <u>
+                    <b>-${coupon.value}</b>
+                  </u>
+                </p>
+              </div>
             </div>
           </div>
-          <div className="col-lg-6 col-md-6">
-            <div className="amount text-right">
-              <p className="coupon-name">
-                <u>
-                  <b>-$1</b>
-                </u>
-              </p>
-            </div>
-          </div>
-        </div>
+        )}
 
         <div className="row">
           <div className="col-lg-6 col-md-6">
@@ -74,7 +101,7 @@ const Checkout = () => {
           <div className="col-lg-6 col-md-6">
             <div className="amount text-right">
               <h4>
-                <b>$24</b>
+                <b>${totalAmount}</b>
               </h4>
             </div>
           </div>
