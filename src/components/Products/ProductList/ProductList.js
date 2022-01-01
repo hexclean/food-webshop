@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 // Components
 import ProductItem from "./ProductItem";
 import Card from "../Shared/Card";
+import toast from "../../util/toast";
 
 const Products = () => {
   const products = useSelector(state => state.products.productList);
@@ -17,6 +18,7 @@ const Products = () => {
             name={item.name}
             price={item.price}
             imageUrl={item.imageUrl}
+            toast={toast}
           />
         ))}
       </>

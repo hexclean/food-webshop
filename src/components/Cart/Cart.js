@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Card from "../Orders/Shared/Card";
 import CartItem from "./CartItem";
 import Checkout from "../Orders/Checkout/Checkout";
+import toast from "../util/toast";
 
 import "./Css/Cart.css";
 
@@ -19,6 +20,7 @@ const Cart = () => {
         imageUrl={item.imageUrl}
         totalItemAmount={item.totalItemAmount}
         itemQuantity={item.quantity}
+        toast={toast}
       />
     ));
   };
@@ -43,7 +45,7 @@ const Cart = () => {
         </div>
         {renderCartItems()}
       </div>
-      <Checkout />
+      <Checkout toast={toast} />
     </Card>
   );
 };

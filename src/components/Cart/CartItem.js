@@ -10,11 +10,15 @@ const CartItem = ({
   itemQuantity,
   totalItemAmount,
   price,
+  toast,
 }) => {
   const dispatch = useDispatch();
 
-  const removeItemHandler = () => dispatch(cartActions.removeItemFromCart(id));
-  const addItemHandler = () =>
+  const removeItemHandler = () => {
+    dispatch(cartActions.removeItemFromCart(id));
+    toast("success", `${name} quantity is successfully decreased!`);
+  };
+  const addItemHandler = () => {
     dispatch(
       cartActions.addItemToCart({
         id,
@@ -23,6 +27,8 @@ const CartItem = ({
         imageUrl,
       })
     );
+    toast("success", `${name} quantity is successfully increased!`);
+  };
   return (
     <div className="product-details py-2">
       <div className="row">
