@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 import "./Css/Checkout.css";
 
-const Checkout = () => {
+const Checkout = ({ toast }) => {
   const dispatch = useDispatch();
   const [couponName, setCouponName] = useState("");
 
@@ -12,14 +12,14 @@ const Checkout = () => {
 
   const addCouponCode = () => {
     if (coupon.activatedCoupon === false && coupon.name === couponName) {
-      // success message
       dispatch(
         cartActions.addCouponCode({
           couponName,
         })
       );
+      toast("success", "Coupon code is successfully activated");
     } else {
-      // error message
+      toast("error", "Coupon is already used or coupon doesn't exist!");
     }
   };
 

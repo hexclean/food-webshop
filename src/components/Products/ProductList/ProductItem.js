@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 import "./Css/ProductItem.css";
 
-const ProductItem = ({ id, name, price, imageUrl }) => {
+const ProductItem = ({ id, name, price, imageUrl, toast }) => {
   const dispatch = useDispatch();
-  const addToCartHandler = () =>
+  const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({
         id,
@@ -14,6 +14,8 @@ const ProductItem = ({ id, name, price, imageUrl }) => {
         imageUrl,
       })
     );
+    toast("success", `${name} successfully added to the cart!`);
+  };
   return (
     <div className="col-lg-3 col-md-6 mb-md-4">
       <div className="product">
