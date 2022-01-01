@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 import "./Css/Checkout.css";
 
+const shippingCost = 2;
+
 const Checkout = ({ toast }) => {
   const dispatch = useDispatch();
   const [couponName, setCouponName] = useState("");
+
+  const items = useSelector(state => state.cart.items);
+  const itemsSubTotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   const changeCouponCode = event => setCouponName(event.target.value);
   const coupon = useSelector(state => state.cart.coupon);
@@ -23,7 +28,8 @@ const Checkout = ({ toast }) => {
     }
   };
 
-  const totalAmount = useSelector(state => state.cart.totalAmount);
+  const totalAmount =
+    useSelector(state => state.cart.totalAmount) + shippingCost;
   return (
     <div className="col-lg-4">
       <div className="total p-3 mt-5">
@@ -73,7 +79,7 @@ const Checkout = ({ toast }) => {
           </div>
           <div className="col-lg-6 col-md-6">
             <div className="amount text-right">
-              <p>$22</p>
+              <p>${itemsSubTotal}</p>
             </div>
           </div>
         </div>
@@ -85,7 +91,7 @@ const Checkout = ({ toast }) => {
           </div>
           <div className="col-lg-6 col-md-6">
             <div className="amount text-right">
-              <p>$2</p>
+              <p>${shippingCost}</p>
             </div>
           </div>
         </div>
