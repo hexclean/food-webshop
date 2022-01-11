@@ -79,7 +79,7 @@ const Checkout = ({ toast }) => {
           </div>
           <div className="col-lg-6 col-md-6">
             <div className="amount text-right">
-              <p>${itemsSubTotal}</p>
+              <p>${itemsSubTotal.toFixed(2)}</p>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ const Checkout = ({ toast }) => {
           <div className="col-lg-6 col-md-6">
             <div className="amount text-right">
               <h4>
-                <b>${totalAmount}</b>
+                <b>${totalAmount.toFixed(2)}</b>
               </h4>
             </div>
           </div>

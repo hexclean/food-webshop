@@ -10,7 +10,7 @@ const Products = () => {
   console.log(products);
   const renderProducts = () => {
     return (
-      <>
+      <React.Fragment>
         {products.map(item => (
           <ProductItem
             key={item.id}
@@ -21,7 +21,7 @@ const Products = () => {
             toast={toast}
           />
         ))}
-      </>
+      </React.Fragment>
     );
   };
 

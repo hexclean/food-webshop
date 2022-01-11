@@ -8,12 +8,12 @@ import ProductList from "../ProductList/ProductList";
 
 const Main = () => {
   return (
-    <>
+    <React.Fragment>
       <Header />
       <Categories />
       <ProductList />
       <Trends />
-    </>
+    </React.Fragment>
   );
 };
 

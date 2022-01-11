@@ -16,13 +16,13 @@ const Categories = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <div className="container">
         <div className="row py-3">
           <div className="col-lg-12">{renderCategories()}</div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

@@ -60,7 +60,7 @@ const CartItem = ({
           </div>
         </div>
         <div className="col-lg-2 col-md-2 pt-4 cart-box-price">
-          <p className="price">${totalItemAmount}</p>
+          <p className="price">${totalItemAmount.toFixed(2)}</p>
         </div>
       </div>
     </div>
