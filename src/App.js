@@ -21,13 +21,13 @@ function App() {
   }, [cart]);
 
   return (
-    <>
+    <React.Fragment>
       <Routes>
         <Route path="/" element={<Products />} />
         <Route path="/checkout" element={<Orders />} />
       </Routes>
       <ToastContainer />
-    </>
+    </React.Fragment>
   );
 }
 

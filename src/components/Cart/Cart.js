@@ -10,8 +10,8 @@ import "./Css/Cart.css";
 
 const Cart = () => {
   const cartItems = useSelector(state => state.cart.items);
-  const renderCartItems = () => {
-    return cartItems.map(item => (
+  const renderCartItems = () =>
+    cartItems.map(item => (
       <CartItem
         key={item.id}
         id={item.id}
@@ -23,7 +23,6 @@ const Cart = () => {
         toast={toast}
       />
     ));
-  };
 
   return (
     <Card>

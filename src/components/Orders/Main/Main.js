@@ -9,10 +9,10 @@ import "./Css/Main.css";
 
 export default function Main() {
   return (
-    <>
+    <React.Fragment>
       <Header />
       <Cart />
       <Trends />
-    </>
+    </React.Fragment>
   );
 }
